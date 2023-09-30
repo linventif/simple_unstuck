@@ -1,7 +1,7 @@
 // Net
 hook.Add("InitPostEntity", "SimpleUnstuck:InitPostEntity", function()
     // Load simpleUnstuck.Config from server
-    net.Start("Simple_Unstuck")
+    net.Start("SimpleUnstuck")
     net.WriteUInt(1, 8)
     net.SendToServer()
 end)
@@ -12,14 +12,14 @@ end)
 
 // Send net
 local function sendNet(id, func)
-    net.Start("Simple_Unstuck")
+    net.Start("SimpleUnstuck")
     net.WriteUInt(id, 8)
     if func then func() end
     net.SendToServer()
 end
 
 function simpleUnstuck.unstuckMe()
-    sendNet(2)
+    sendNet(1)
 end
 
 // Receive net
@@ -30,7 +30,7 @@ local netFunc = {
     end
 }
 
-net.Receive("Simple_Unstuck", function(len)
+net.Receive("SimpleUnstuck", function(len)
     local type = net.ReadUInt(8)
     if (netFunc[type]) then
         netFunc[type]()
