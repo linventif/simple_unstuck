@@ -7,6 +7,10 @@ Allow players to get unstuck from the map, player or anything else.
 - Chat and Console Commands
 - Multi Language
 
+## Requirements
+
+- [Linventif Stuff](https://steamcommunity.com/sharedfiles/filedetails/?id=2882747990)
+
 ## Installation
 
 1. Install all the requirements.
