@@ -1,10 +1,6 @@
-// Net
-hook.Add("InitPostEntity", "SimpleUnstuck:InitPostEntity", function()
-    // Load simpleUnstuck.Config from server
-    net.Start("SimpleUnstuck")
-    net.WriteUInt(1, 8)
-    net.SendToServer()
-end)
+//
+// Server Network
+//
 
 /* Net from server
     1: Message
