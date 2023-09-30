@@ -4,8 +4,9 @@ Allow players to get unstuck from the map, player or anything else.
 
 ## Features
 
-- Chat and Console Commands
-- Multi Language
+- Chat Trigger
+- Console Commands
+- Simple Configuration
 
 ## Requirements
 
