@@ -16,7 +16,7 @@ local function sendNet(ply, id, func)
     net.Send(ply)
 end
 
-local function sendMsg(ply, id, opt)
+function simpleUnstuck.sendPlyMsg(ply, id, opt)
     sendNet(ply, 1, function()
         net.WriteString(simpleUnstuck.getTrad(id, opt))
     end)
@@ -24,7 +24,7 @@ end
 
 // Receive net
 local netFunc = {
-    [1] = unstuckPlayer
+    [1] = simpleUnstuck.unstuckPlayer
 }
 
 net.Receive("SimpleUnstuck", function(len, ply)

@@ -31,14 +31,14 @@ function simpleUnstuck.findValidPos(initPos, radius, maxChecks)
     local maxAttempts = maxChecks || 60
 
     // check if the spawn position is valid
-    if isValidPlyPos(initPos) then
+    if simpleUnstuck.isValidPlyPos(initPos) then
         return initPos
     end
 
     // try to find a valid position in a random direction
     for i = 1, maxAttempts do
         local genPos = initPos + Vector(math.random(-searchRadius, searchRadius), math.random(-searchRadius, searchRadius), math.random(-searchRadius, searchRadius) )
-        local validPos = isValidPlyPos(genPos)
+        local validPos = simpleUnstuck.isValidPlyPos(genPos)
         if validPos then
             return validPos
         end
@@ -57,7 +57,7 @@ function simpleUnstuck.unstuckPlayer(ply)
     // verify if cooldown
     if (ply.lastUnstuck && ply.lastUnstuck > CurTime()) then
         local rest = math.Round(ply.lastUnstuck - CurTime())
-        sendMsg(ply, "cooldown", { rest })
+        simpleUnstuck.sendPlyMsg(ply, "cooldown", { rest })
         return false
     end
     ply.lastUnstuck = CurTime() + simpleUnstuck.Config.cooldown
@@ -65,9 +65,10 @@ function simpleUnstuck.unstuckPlayer(ply)
     // find a valid pos
     local pos = simpleUnstuck.findValidPos(ply:GetPos(), simpleUnstuck.Config.maxDistance, simpleUnstuck.Config.maxTry)
     if (pos) then
-        sendMsg(ply, "unstuck")
+        ply:SetPos(pos)
+        simpleUnstuck.sendPlyMsg(ply, "unstuck")
         return true
     end
 
-    sendMsg(ply, "fail")
+    simpleUnstuck.sendPlyMsg(ply, "fail")
 end
