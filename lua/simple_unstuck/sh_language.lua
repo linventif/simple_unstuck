@@ -4,7 +4,7 @@
 
 local lang = {
     ["unstuck"] = "You have been unstuck!",
-    ["cooldown"] = "You have to wait %s seconds before using this command again!",
+    ["cooldown"] = "You have to wait {1} seconds before using this command again!",
     ["fail"] = "We can't unstuck you, try again later or contact an admin!",
     ["no_perm"] = "You don't have the permission to use this command!",
     ["save_config"] = "Configuration saved, and send to all players!",
@@ -19,11 +19,9 @@ local lang = {
 //
 
 function simpleUnstuck.getTrad(str, opt)
-    if (!lang[config.language] || !lang[config.language][str]) then
-        return str
+    if (lang[str]) then
+        str = lang[str] or str
     end
-
-    str = lang[config.language][str]
 
     if (opt) then
         for k, v in pairs(opt) do
